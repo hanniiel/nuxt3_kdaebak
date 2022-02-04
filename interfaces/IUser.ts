@@ -1,6 +1,6 @@
 export default interface IUser {
     _id: string
-    name:string
+    name?:string
     currency:number
     password:string
     role:string

@@ -1,6 +1,8 @@
 import {Request, Router} from 'express'
 
 import {Idol} from '../models/idol'
+import auth from '../middleware/authFire'
+
 const router = Router()
 
 import moment from "moment"
@@ -42,7 +44,7 @@ router.route("/idol")
             res.send(idols);
         }
         else{
-            let idols = await Idol.find({},{},{skip:page*per_page,limit:per_page}).populate("group").exec();
+            let idols = await Idol.find({},{},{skip:page*per_page,limit:per_page}).populate("group").exec()
             res.status(200).send(idols);
         }
 

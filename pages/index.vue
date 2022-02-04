@@ -16,7 +16,15 @@
             <p>Maybe we can live without...</p>
             <p>Look. If you think this is...</p>
         </div>
+        <button @click="cookie='holis'">
+      +
+    </button>
     </div>
     
 </div>
 </template>
+<script setup>
+    const cookie = useCookie('jwt')
+    cookie.value = 'nice'
+    console.log(cookie.value)
+</script>
