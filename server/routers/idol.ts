@@ -1,7 +1,7 @@
 import { Request, Router } from 'express'
 
 import { Idol } from '../models/idol'
-import auth from '../middleware/authFire'
+import auth from '../handlers/authFire'
 
 const router = Router()
 

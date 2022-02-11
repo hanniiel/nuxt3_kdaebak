@@ -69,8 +69,9 @@
 
 export default {
   async setup() {
-      const {data} =  await useFetch('https://evening-savannah-98320.herokuapp.com/api/idol')
-      console.log(data)
+      const config = useRuntimeConfig()
+      const {data} =  await useFetch(config.BASE_URL+'/api/idol')
+      console.log(config.BASE_URL+'/api/idol')
     return {
       list:data
     }

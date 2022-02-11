@@ -2,7 +2,7 @@ import { Router } from 'express'
 import moment from 'moment'
 import IRequestPagination from '~~/interfaces/requests/IRequestPagination'
 import { Group } from '../models/group'
-import authFire from '../middleware/authFire'
+import authFire from '../handlers/authFire'
 import IRequestPaginationRank from '~~/interfaces/requests/IRequestPaginationRank'
 
 const router = Router()
