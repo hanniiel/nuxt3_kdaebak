@@ -13,13 +13,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-import userRoute from '../routers/user'
-import idolRoute from '../routers/idol'
-import groupRoute from '../routers/group'
+import api from '../routers/'
 
-app.use('/api', userRoute)
-app.use('/api', idolRoute)
-app.use('/api', groupRoute)
+app.use(api.path, api.routes)
 
 app.get('/holis', (req, res) => {
     res.send('holis')
