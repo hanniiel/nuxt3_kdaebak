@@ -1,9 +1,9 @@
-import { Schema } from 'mongoose'
+import { Types } from 'mongoose'
 
 export default interface IVote {
     user: string
-    idol: Schema.Types.ObjectId
-    act: Schema.Types.ObjectId
-    group: Schema.Types.ObjectId
+    idol: Types.ObjectId
+    act: Types.ObjectId
+    group: Types.ObjectId
     votes: number
 }
