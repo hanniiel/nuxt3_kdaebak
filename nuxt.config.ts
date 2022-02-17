@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     buildModules: [],
     css: ['@/assets/css/main.css'],
     components: true,
-    plugins: [],
+    plugins: ['@/plugins/firebase.client'],
     privateRuntimeConfig: {
         MONGO_PATH: process.env.MONGO_PATH,
         SECRET_KEY: process.env.SECRET_KEY,

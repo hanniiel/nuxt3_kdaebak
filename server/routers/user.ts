@@ -8,7 +8,7 @@ const router = express.Router()
 router.get('/user', (req: Request, res) => {
     const cookie = useCookie(req, 'jwt')
 
-    res.send(`${cookie || 'no cookie'}`)
+    res.send(`${cookie ?? 'no cookie'}`)
 })
 router
     .route('/user')
