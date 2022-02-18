@@ -33,14 +33,16 @@ function login() {
     const auth = getAuth()
     const provider = new GoogleAuthProvider()
     signInWithPopup(auth, provider)
-        .then((result) => {
+        .then(async (result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result)
             const token = credential.accessToken
-            cookie.value = token
-            console.log(cookie.value)
+
             // The signed-in user info.
             const user = result.user
+            cookie.value = await result.user.getIdToken()
+            console.log(cookie.value)
+
             // ...
         })
         .catch((error) => {

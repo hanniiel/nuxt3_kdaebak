@@ -5,14 +5,10 @@ import authFire from '../handlers/authFire'
 import { User } from '../models/user'
 const router = express.Router()
 
-router.get('/user', (req: Request, res) => {
-    const cookie = useCookie(req, 'jwt')
-
-    res.send(`${cookie ?? 'no cookie'}`)
-})
 router
     .route('/user')
     .get(authFire, async (req, res) => {
+        //const cookie = useCookie(req, 'jwt')
         res.send(req.user)
     })
     .post(async (req, res) => {
