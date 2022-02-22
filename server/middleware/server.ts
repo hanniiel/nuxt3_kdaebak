@@ -17,8 +17,4 @@ import api from '../routers/'
 
 app.use(api.path, api.routes)
 
-app.get('/holis', (req, res) => {
-    res.send('holis')
-})
-
 export default app
