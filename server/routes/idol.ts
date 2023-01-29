@@ -1,7 +1,7 @@
 import { defineEventHandler, createRouter, useBase } from 'h3'
 
 const router = createRouter()
-const path = '/idol'
+const path = '/idols'
 router
     .get(
         path,
