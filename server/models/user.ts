@@ -1,7 +1,7 @@
 import mongoose, { Model } from 'mongoose'
 const { Schema, model } = mongoose
 import validator from 'validator'
-import bcrypt from 'bcrypt'
+
 import jwt from 'jsonwebtoken'
 import IUser from '~~/interfaces/IUser'
 
@@ -88,20 +88,12 @@ schema.statics.findByCredentials = async (email, password) => {
         throw new Error('failed to login')
     }
 
-    let isMatch = await bcrypt.compare(password, user.password)
-
-    if (!isMatch) {
-        throw new Error('user or password not found')
-    }
-
     return user
 }
 
 schema.pre('save', async function (next) {
     var user = this
-    if (user.isModified('password')) {
-        user.password = await bcrypt.hash(user.password, 8)
-    }
+
     next()
 })
 
