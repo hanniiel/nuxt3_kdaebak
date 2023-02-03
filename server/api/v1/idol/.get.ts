@@ -1,8 +1,6 @@
 import { defineEventHandler, createError } from 'h3'
 import { Idol } from '~~/server/models/idol'
-import connect from '../../../../server/connection'
 
-connect()
 export default defineEventHandler(async (event) => {
     let { page, per_page, id, name } = getQuery(event)
 
