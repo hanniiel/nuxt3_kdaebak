@@ -1,3 +1,6 @@
 import connect from '../connection'
+import { defineEventHandler } from 'h3'
 
-connect()
+export default defineEventHandler(() => {
+    connect()
+})
