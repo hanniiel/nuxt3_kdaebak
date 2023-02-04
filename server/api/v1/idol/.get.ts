@@ -10,9 +10,7 @@ export default defineEventHandler(async (event) => {
 
     try {
         if (id) {
-            const idol = await Idol.findById(id)
-                //.populate('group')
-                .exec()
+            const idol = await Idol.findById(id).populate('group').exec()
             return idol
         } else if (name) {
             const idols = await Idol.find(
@@ -29,6 +27,8 @@ export default defineEventHandler(async (event) => {
                     limit: parseInt(per_page as string),
                 }
             )
+                .populate('group')
+                .exec()
 
             if (idols.length === 0) {
                 return createError({ message: 'coincidence not found' })
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
                     limit: parseInt(per_page as string),
                 }
             )
-                //.populate('group')
+                .populate('group')
                 .exec()
 
             return idols
