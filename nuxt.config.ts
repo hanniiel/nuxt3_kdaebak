@@ -11,4 +11,7 @@ export default defineNuxtConfig({
             apiBase: '/api',
         },
     },
+    nitro: {
+        plugins: ['~/server/index.ts'],
+    },
 })
