@@ -50,6 +50,6 @@ export default defineEventHandler(async (event) => {
             return idols
         }
     } catch (e) {
-        throw createError({ message: 'fk', status: 501 })
+        throw createError({ data: e, status: 501 })
     }
 })
