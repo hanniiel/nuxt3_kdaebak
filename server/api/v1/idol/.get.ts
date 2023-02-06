@@ -1,12 +1,14 @@
 import { defineEventHandler, createError } from 'h3'
+import IPagination from '~~/server/interfaces/IPagination'
 import { Idol } from '~~/server/models/idol'
 
 export default defineEventHandler(async (event) => {
-    let { page, per_page, id, name } = getQuery(event)
+    const query = getQuery(event) as IPagination
 
     //pagination
-    page = page ?? '0'
-    per_page = per_page ?? '20'
+    const page = query.page ? parseInt(query.page) : 0
+    const per_page = query.per_page ? parseInt(query.per_page) : 20
+    const { id, name } = query
 
     try {
         if (id) {
@@ -22,9 +24,8 @@ export default defineEventHandler(async (event) => {
                 },
                 {},
                 {
-                    skip:
-                        parseInt(page as string) * parseInt(per_page as string),
-                    limit: parseInt(per_page as string),
+                    skip: page * per_page,
+                    limit: per_page,
                 }
             )
                 .populate('group')
@@ -39,9 +40,8 @@ export default defineEventHandler(async (event) => {
                 {},
                 {},
                 {
-                    skip:
-                        parseInt(page as string) * parseInt(per_page as string),
-                    limit: parseInt(per_page as string),
+                    skip: page * per_page,
+                    limit: per_page,
                 }
             )
                 .populate('group')
