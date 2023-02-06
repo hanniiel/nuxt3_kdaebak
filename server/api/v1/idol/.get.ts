@@ -1,6 +1,7 @@
 import { defineEventHandler, createError } from 'h3'
 import IPagination from '~~/server/interfaces/IPagination'
 import { Idol } from '~~/server/models/idol'
+import { MongooseError } from 'mongoose'
 
 export default defineEventHandler(async (event) => {
     const query = getQuery(event) as IPagination
@@ -49,7 +50,7 @@ export default defineEventHandler(async (event) => {
 
             return idols
         }
-    } catch (e) {
-        throw createError({ data: e, status: 501 })
+    } catch (e: any) {
+        return createError({ message: e.message, status: 501 })
     }
 })
