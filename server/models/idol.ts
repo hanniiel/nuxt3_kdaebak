@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 const { Schema, model } = mongoose
 
 import IIdol from '~~/interfaces/IIdol'
+import { Group } from './group'
 
 const schema = new Schema<IIdol>(
     {
@@ -55,7 +56,7 @@ const schema = new Schema<IIdol>(
 )
 
 schema.virtual('group', {
-    ref: 'Group',
+    ref: Group,
     localField: '_id',
     foreignField: 'members.member',
     justOne: true,
