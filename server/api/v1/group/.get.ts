@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
                 .exec()
             return groups
         }
-    } catch (e) {
-        return createError('Error with groups')
+    } catch (e: any) {
+        return createError('Error with groups ' + e.message)
     }
 })
