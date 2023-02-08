@@ -66,4 +66,4 @@ schema.virtual('group', {
 //fandom
 const Idol = model<IIdol>('Idol', schema)
 
-export { Idol }
+export { Idol, schema }
