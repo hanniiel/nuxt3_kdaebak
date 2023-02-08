@@ -41,7 +41,7 @@ const schema = new Schema<IGroup>(
                     type: Schema.Types.ObjectId,
                     required: false,
                     unique: false,
-                    ref: Idol.schema,
+                    refPath: './idol.ts',
                 },
                 joined: Date,
             },
@@ -52,7 +52,7 @@ const schema = new Schema<IGroup>(
                     type: Schema.Types.ObjectId,
                     required: false,
                     unique: false,
-                    ref: Idol.schema,
+                    refPath: './idol.ts',
                 },
                 left: Date,
                 reason: String,
@@ -69,6 +69,6 @@ const schema = new Schema<IGroup>(
     { timestamps: true }
 )
 
-const Group = model<IGroup>('Group', schema)
+const Group = mongoose.model<IGroup>('Group', schema)
 
 export { Group, schema }
