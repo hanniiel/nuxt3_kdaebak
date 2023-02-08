@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema, model } = mongoose
 import IGroup from '~~/interfaces/IGroup'
+import { Idol } from './idol'
 
 const schema = new Schema<IGroup>(
     {
@@ -40,7 +41,7 @@ const schema = new Schema<IGroup>(
                     type: Schema.Types.ObjectId,
                     required: false,
                     unique: false,
-                    ref: 'Idol',
+                    ref: Idol.schema,
                 },
                 joined: Date,
             },
@@ -51,7 +52,7 @@ const schema = new Schema<IGroup>(
                     type: Schema.Types.ObjectId,
                     required: false,
                     unique: false,
-                    ref: 'Idol',
+                    ref: Idol.schema,
                 },
                 left: Date,
                 reason: String,
