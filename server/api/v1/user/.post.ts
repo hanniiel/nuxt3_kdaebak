@@ -8,6 +8,6 @@ export default defineEventHandler(async (event) => {
         const token = await user.genAuthToken()
         return { user, token }
     } catch (e) {
-        throw createError({ message: 'Bad request', status: 400 })
+        return createError({ message: 'Bad request', status: 400 })
     }
 })

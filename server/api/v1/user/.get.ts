@@ -1,8 +1,6 @@
-import { defineEventHandler, createError } from 'h3'
+import { defineEventHandler, createError, H3Event } from 'h3'
+import validateAuth from '~~/server/validators/auth'
 
-export default defineEventHandler((event) => {
-    if (!event.context.user)
-        throw createError({ message: 'Not authenticaded', status: 401 })
-
-    return event.context.user
+export default defineEventHandler((event: H3Event) => {
+    return validateAuth(event)
 })

@@ -1,24 +1,20 @@
 import { defineEventHandler, createError, readBody } from 'h3'
 import validateAuth from '~~/server/validators/auth'
-import { Idol } from '~~/server/models/idol'
+import { Group } from '~~/server/models/group'
 
 export default defineEventHandler(async (event) => {
     const user = validateAuth(event)
-
     try {
         if (user.role != 'admin') {
-            return createError({ message: 'role not authorized' })
+            return createError({ message: 'not authorized' })
         }
 
         const body = await readBody(event)
+        const group = new Group(body)
+        const result = await group.save()
 
-        let idol = new Idol({
-            ...body,
-        })
-
-        const result = await idol.save()
         return result
-    } catch (error: any) {
-        return createError({ message: error.message })
+    } catch (e: any) {
+        return createError({ message: e.message })
     }
 })

@@ -1,7 +1,6 @@
 import { defineEventHandler, createError } from 'h3'
 import IPagination from '~~/server/interfaces/IPagination'
 import { Idol } from '~~/server/models/idol'
-import { MongooseError } from 'mongoose'
 
 export default defineEventHandler(async (event) => {
     const query = getQuery(event) as IPagination

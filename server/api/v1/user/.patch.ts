@@ -1,13 +1,10 @@
 import { defineEventHandler, createError } from 'h3'
 import { User } from '~~/server/models/user'
+import validateAuth from '~~/server/validators/auth'
 
 export default defineEventHandler(async (event) => {
+    validateAuth(event)
     try {
-        if (!event.context.user)
-            throw createError({
-                message: 'Not authenticaded',
-                status: 401,
-            })
         //valdiate params to update
         const body = await readBody(event)
         let updates = Object.keys(body)

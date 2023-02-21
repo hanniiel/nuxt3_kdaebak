@@ -1,16 +1,20 @@
 import { defineEventHandler, getCookie, H3Event } from 'h3'
 import { User } from '../models/user'
 import admin from 'firebase-admin'
-export default defineEventHandler((event) => {
+
+export default defineEventHandler(async (event: H3Event) => {
     const { req } = event.node
     if (!req.headers.authorization) {
         const cookie = getCookie(event, 'jwt')
         if (cookie) {
             req.headers.authorization = `Bearer ${cookie}`
-            appendUser(event, cookie)
+            await appendUser(event, cookie)
         }
     } else {
-        appendUser(event, req.headers.authorization.replace('Bearer ', ''))
+        await appendUser(
+            event,
+            req.headers.authorization.replace('Bearer ', '')
+        )
     }
 })
 
@@ -30,7 +34,9 @@ async function appendUser(event: H3Event, token: string) {
         } else {
             event.context.user = user
         }
-    } catch (e) {
-        console.log(e)
+        //context token
+        event.context.token = token
+    } catch (e: any) {
+        console.log(e.message)
     }
 }

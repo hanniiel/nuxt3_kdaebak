@@ -1,13 +1,11 @@
 import { defineEventHandler, createError, readBody } from 'h3'
 import { Vote } from '~~/server/models/vote'
+import validateAuth from '~~/server/validators/auth'
 
 export default defineEventHandler(async (event) => {
+    const user = validateAuth(event)
     try {
-        if (!event.context.user) throw createError('Not authenticated')
-
         const body = await readBody(event)
-
-        let user = event.context.user
 
         if (
             (user.currency > 0 && user.currency >= body.votes) ||
@@ -33,9 +31,9 @@ export default defineEventHandler(async (event) => {
 
             return saved
         } else {
-            throw createError('Get more hearts to vote')
+            return createError('Get more hearts to vote')
         }
-    } catch (e) {
-        throw e
+    } catch (e: any) {
+        return createError(e.message)
     }
 })
